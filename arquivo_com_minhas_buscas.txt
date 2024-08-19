@@ -1,0 +1,60 @@
+SELECT * from [Filmes];
+
+-- Requisito 1
+SELECT Nome, Ano from [Filmes];
+
+-- Requisito 2
+SELECT Nome, Ano, Duracao from [Filmes] ORDER By Ano;
+
+-- Requisito 3
+SELECT Nome, Ano, Duracao from [Filmes] WHERE Nome = 'De Volta para o Futuro';
+
+-- Requisito 4
+SELECT Nome, Ano, Duracao from [Filmes] WHERE Ano = 1997;
+
+-- Requisito 5
+SELECT Nome, Ano, Duracao from [Filmes] WHERE Ano > 2000;
+
+-- Requisito 6
+SELECT Nome, Ano, Duracao from [Filmes] WHERE Duracao > 100 AND Duracao < 150 ORDER BY Duracao;
+
+-- Requisito 7
+SELECT 
+    Ano,
+    COUNT(*) Quantidade
+from [Filmes]
+GROUP BY Ano
+ORDER BY Quantidade DESC;
+
+-- Requisito 8
+SELECT * FROM [Atores] WHERE Genero = 'M';
+
+-- Requisito 9
+SELECT * FROM [Atores] WHERE Genero = 'F' ORDER BY PrimeiroNome;
+
+-- Requsito 10
+SELECT 
+    Nome,
+    Genero
+    FROM [Filmes]
+INNER JOIN [FilmesGenero] ON Filmes.Id = FilmesGenero.IdFilme
+INNER JOIN [Generos] ON Generos.Id = FilmesGenero.IdGenero
+
+-- Requisito 11
+SELECT
+    Nome,
+    Genero
+FROM [Filmes]
+INNER JOIN [FilmesGenero] ON Filmes.Id = FilmesGenero.IdFilme
+INNER JOIN [Generos] ON Generos.Id = FilmesGenero.IdGenero
+WHERE Genero = 'Mistério'
+
+-- Requisito 12
+SELECT
+    Nome,
+    PrimeiroNome,
+    UltimoNome,
+    Papel
+FROM [Filmes]
+INNER JOIN [ElencoFilme] ON Filmes.Id = ElencoFilme.IdFilme
+INNER JOIN [Atores] ON Atores.Id = ElencoFilme.IdAtor
